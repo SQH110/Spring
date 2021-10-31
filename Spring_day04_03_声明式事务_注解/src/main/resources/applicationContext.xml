@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+<!--TX命名空间管理事务-->
+
+
+    <context:property-placeholder location="classpath:*.properties"/>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+<!--mybatis的配置-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.itheima.domain"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itheima.dao"/>
+    </bean>
+<!--mybatis的配置-->
+
+<!--bean容器配置-->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+<!--使用TX格式配置-->
+    <!--                  TX格式                  -->
+    <!--                  TX格式                  -->
+    <!--                  TX格式                  -->
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <tx:annotation-driven transaction-manager="txManager"/><!--告知使用注解驱动-->
+ <!--上面的代替了下面的txAdvice相关配置-->
+
+    <!--定义事务管理的通知类--><!--需要一个事务管理器-->
+<!--    <tx:advice id="txAdvice" transaction-manager="txManager">-->
+    <!--相当于原来配置的bean-->
+        <!--定义控制的事务（哪些事务是受到控制的）（代替了原来在TXAdvice中的内容）-->
+<!--        <tx:attributes>-->
+<!--            <tx:method-->
+<!--                name="transfer"-->
+<!--                read-only="false"-->
+<!--                timeout="-1"-->
+<!--                isolation="DEFAULT"-->
+<!--                no-rollback-for=""-->
+<!--                rollback-for=""-->
+<!--                propagation="REQUIRED"-->
+<!--                />-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+<!--用@Transactional代替
+代替了切入点
+    <aop:pointcut id="pt" expression="execution(* com.itheima.service.*Service.*(..))"/>
+    pointcut-ref="pt"
+    ****************************************
+    advice-ref="txAdvice"
+    这个是没有被代替的
+
+-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="pt" expression="execution(* com.itheima.service.*Service.*(..))"/>-->
+        <!--
+        注意：这里不想原来那样execution(* *..transfer(..))，
+        而是更加细致，这样避免了都挂到aop上
+        像这样execution(* com.itheima.service.*Service.*(..))
+        对业务层精准锁定
+        -->
+<!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>-->
+<!--    </aop:config>-->
+
+
+</beans>

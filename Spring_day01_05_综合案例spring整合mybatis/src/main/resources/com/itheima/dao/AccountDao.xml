@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.dao.AccountDao"><!--名称空间与dao或者mapper接口全类名相同-->
+    <!--sql片段抽取-->
+    <sql id="select">SELECT * FROM account</sql>
+
+    <select id="findAll" resultType="account">/*查询全部,resultType表示封装路径*/
+        <include refid="select"/>
+    </select>
+
+    <select id="findById" resultType="com.itheima.domain.Account" parameterType="int" >/*id是int类型*/
+        select * from account where id = #{id}
+    </select>
+
+    <!--配置保存-->
+    <select id="save" parameterType="account">
+        INSERT INTO account(NAME,money) VALUES (#{name},#{money})
+    </select>
+
+    <!--配置删除-->
+    <delete id="delete" parameterType="int">
+        DELETE FROM account WHERE id = #{id}
+    </delete>
+
+    <!--配置更新-->
+    <update id="update" parameterType="account">
+        UPDATE account SET NAME=#{name},money=#{money} where id=#{id}
+    </update>
+
+</mapper>

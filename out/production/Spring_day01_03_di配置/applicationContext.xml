@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    创建Spring控制的资源-->
+<!--    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">-->
+<!--        &lt;!&ndash;3.将要注入的引用类型变量通过property属性进行注入，对应的name是要注入的变量名（set后的字段）&ndash;&gt;-->
+<!--        <property name="userDao" ref="userDao"/>-->
+<!--        &lt;!&ndash;非引用类型，不需要声明为bean（字符串当作非引用）&ndash;&gt;-->
+<!--        <property name="num" value="666"/>-->
+<!--        <property name="version" value="版本"/>-->
+<!--    </bean>-->
+
+    <!--2.将要注入的资源声明为bean（第一步是给需要的注入的资源扩大作用域）（只用于引用类型）-->
+<!--    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">-->
+<!--        &lt;!&ndash;使用构造方法注入，需要保证注入的属性与bean中定义的一致&ndash;&gt;-->
+<!--        &lt;!&ndash;一致：顺序一致、类型一致、或使用index解决问题&ndash;&gt;-->
+<!--        <constructor-arg index="0" value="123"/>-->
+<!--        <constructor-arg index="1" value="root"/>-->
+<!--        <constructor-arg index="2" value="com.mysql.jdbc.Driver"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">-->
+<!--        <constructor-arg name="userDao" ref="userDao"/>-->
+        <!--name是构造方法形参中的参数名-->
+<!--        <constructor-arg name="num" value="635"/>-->
+<!--        <constructor-arg name="version" value="版本"/>-->
+<!--    </bean>-->
+
+
+    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">
+        <constructor-arg index="0" value="123"/>
+        <constructor-arg index="1" value="root"/>
+        <constructor-arg index="2" value="com.mysql.jdbc.Driver"/>
+    </bean>
+
+<!--    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">-->
+<!--        <property name="bookDao" ref="bookDao"/>-->
+<!--        <property name="userDao" ref="userDao"/>-->
+<!--        <property name="num" value="123"/>-->
+<!--        <property name="version" value="itheima"/>-->
+<!--    </bean>-->
+
+
+
+    <!--p中写的是属性名，对上面的进行了简化-->
+<!--    <bean-->
+<!--            id="userService"-->
+<!--            class="com.itheima.service.impl.UserServiceImpl"-->
+<!--            p:userDao-ref="userDao"-->
+<!--            p:bookDao-ref="bookDao"-->
+<!--    />-->
+
+        <bean id="userService" class="com.itheima.service.impl.UserServiceImpl">
+            <!--使用SpEL改造，统一格式-->
+            <property name="bookDao" value="#{bookDao}"/>
+            <property name="userDao" value="#{userDao}"/>
+            <property name="num" value="#{666666}"/>
+            <property name="version" value="#{'itheima'}"/>
+        </bean>
+
+
+    <bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl">
+        <!--set方式注入-->
+        <property name="al"><!--list-->
+            <list>
+                <value>itheima</value>
+                <value>66666</value>
+            </list>
+        </property>
+        <property name="properties"><!--property-->
+            <props>
+                <prop key="name">itheima</prop>
+                <prop key="value">66666</prop>
+            </props>
+        </property>
+        <property name="arr">
+            <array>
+                <value>3648</value>
+                <value>66666</value>
+            </array>
+        </property>
+        <property name="hs">
+            <set>
+                <value>itheima</value>
+                <value>666666</value>
+            </set>
+        </property>
+        <property name="hm">
+            <map>
+                <entry key="name" value="itheima666"/>
+                <entry key="value" value="666666666"/>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

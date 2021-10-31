@@ -1,0 +1,40 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--&lt;!&ndash;MyBatis的DTD约束&ndash;&gt;-->
+<!--<!DOCTYPE configuration-->
+<!--        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"-->
+<!--        "http://mybatis.org/dtd/mybatis-3-config.dtd">-->
+
+<!--这是mybatis的核心配置文件-->
+<!--无用-->
+<!--这个文件最终不需要的-->
+
+
+<!--<configuration>-->
+<!--    <properties resource="jdbc.properties"></properties>这个文件加载不要了-->
+<!--    <typeAliases>-->
+    <!--别名，后面搬家到Context-->
+<!--        <package name="com.itheima.domain"/>-->
+        <!--批量起别名-->
+<!--    </typeAliases>-->
+
+
+
+
+<!--    <environments default="mysql">-->
+<!--        <environment id="mysql">-->
+<!--            <transactionManager type="JDBC"></transactionManager>--><!--事务-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="${jdbc.driver}"/>-->
+<!--                <property name="url" value="${jdbc.url}"/>-->
+<!--                <property name="username" value="${jdbc.username}"/>-->
+<!--                <property name="password" value="${jdbc.password}"/>-->
+<!--            </dataSource>--><!--数据源也不需要了-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+
+<!--    <mappers>-->
+    <!--后面搬家到Context-->
+<!--        <package name="com.itheima.dao"></package>-->
+<!--    </mappers>-->
+<!--</configuration>-->

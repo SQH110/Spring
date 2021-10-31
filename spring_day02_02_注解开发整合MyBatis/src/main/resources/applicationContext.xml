@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启加载properties配置文件(类路径下的)-->
+<!--    <context:property-placeholder location="classpath:*.properties"/>-->
+
+    <!--加载数据源/线程池(造一个dataSource对象，把加载的信息变成一个对象)-->
+<!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--        <property name="driverClassName" value="${jdbc.driver}"/>-->
+<!--        <property name="password" value="${jdbc.username}"/>-->
+<!--        <property name="username" value="${jdbc.password}"/>-->
+<!--        <property name="url" value="${jdbc.url}"/>-->
+<!--    </bean>-->
+
+    <!--配置service作为spring的bean，注入dao-->
+<!--    <bean id="accountService" class="com.itheima.service.impl.AccountServicelmpl">-->
+        <!--注入-->
+<!--        <property name="accountDao" ref="accountDao"/>&lt;!&ndash;这个ref的值是spring自动管理&ndash;&gt;-->
+        <!--mybatis的dao是自动代理生成的，所以没有accountDao的bean-->
+<!--    </bean>-->
+
+    <!--（上面和Mybatis没啥关系，现在要做的就是和mybatis产生关系）spring整合mybatis后控制的创建连接用的对象-->
+<!--    <bean class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--
+        这个类就是spring整合mybatis后的类
+        这个类是创建SqlSessionFactory的bean
+        -->
+<!--        <property name="dataSource" ref="dataSource"/>-->
+    <!--数据源来造连接对象-->
+<!--        <property name="typeAliasesPackage" value="com.itheima.domain"/>&lt;!&ndash;之前的typeAliases标签&ndash;&gt;-->
+        <!--
+        包的类型别名
+        批量起别名：在包下的类的别名就是小写的类名
+        -->
+<!--    </bean>-->
+
+    <!--加载mybatis映射配置的扫描（之前的Mapper标签），将其作为spring的bean进行管理-->
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+    <!--这个类是做映射扫描配置的-->
+<!--        <property name="basePackage" value="com.itheima.dao"/>-->
+    <!--扫描基础包：在这个包下的所有都会读取-->
+<!--    </bean>-->
+    <!--
+        上面两个id可以不写
+        上面两个class，是用来作为mybatis中自动代理做dao用的
+        有了这个，交给spring就可以使用了
+        之所以使用id是为了按名字定向的捕捉到id
+        而现在这个两个东西是给spring自己用的，所以只有看到这个类型
+        如：org.mybatis.spring.SqlSessionFactoryBean
+        即可
+    -->
+</beans>

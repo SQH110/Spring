@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--创建Spring控制的资源-->
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"/>
+    <!--id可以任意取名，但是为了规范，取名为接口名-->
+    <!--class是要用来创建对象的，不能写接口，使用接口实现类的全类名-->
+    <!--bean的配置要保证class中有无参构造-->
+
+</beans>

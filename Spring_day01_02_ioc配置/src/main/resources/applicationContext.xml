@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean可以定义多个名称，使用name属性完成，中间使用,分割（多个用户使用）-->
+<!--    <bean id="userService" name="userService1,userService2" class="com.itheima.service.impl.UserServiceImpl"/>-->
+
+    <!--scope属性：控制bean创建后的对象是否是单例的，不写是默认为单例的-->
+<!--    <bean id="userService3" scope="prototype" class="com.itheima.service.impl.UserServiceImpl"/>-->
+
+
+<!--    <bean id="userService3" scope="singleton" init-method="init" destroy-method="destroy" class="com.itheima.service.impl.UserServiceImpl"/>-->
+
+    <!--静态工厂-->
+<!--    <bean id="userService4" class="com.itheima.service.UserServiceFactory" factory-method="getService"/>-->
+
+    <!--实例工厂-->
+    <bean id="factoryBean" class="com.itheima.service.UserServiceFactory2"/><!--工厂类bean-->
+    <bean id="userService5" factory-bean="factoryBean" factory-method="getService"/>
+    <!--
+    实例对象需要，工厂对象来调用方法
+    先设置一个bean，告知spring容器，这个bean是一个factory-bean
+    再说明factory-method
+    -->
+</beans>
