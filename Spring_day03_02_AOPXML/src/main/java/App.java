@@ -7,11 +7,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     public static void main(String[] args) {
+
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) ctx.getBean("userService");
+
 //        userService.save(666);
 
-//        int update = userService.update();
+//        int update = userService.update();//接收方法中返回的结果
 //        System.out.println("app..." + update);
 
         userService.delete();

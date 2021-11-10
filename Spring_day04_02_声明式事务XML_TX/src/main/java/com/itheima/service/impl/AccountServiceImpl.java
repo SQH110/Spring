@@ -25,6 +25,7 @@ public class AccountServiceImpl implements AccountService {
         accountDao.outMoney(inName,money);
     }
 
+    //业务层的a方法调用数据层的b方法
     public void a() {
         accountDao.b();
     }

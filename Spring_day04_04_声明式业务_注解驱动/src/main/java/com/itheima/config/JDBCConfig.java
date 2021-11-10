@@ -18,7 +18,7 @@ public class JDBCConfig {
     private String driver;
     @Value("${jdbc.url}")
     private String url;
-    @Value("${jdbc.userName}")
+    @Value("${jdbc.username}")
     private String userName;
     @Value("${jdbc.password}")
     private String password;

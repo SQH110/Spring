@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
  * @create 2021-05-07 20:05
  */
 @Component("userDao")
-@DependsOn("userService")//依赖这个id代表的bean，那么先加载别人
+@DependsOn("userService")//依赖的这个id代表的bean就是先加载的（这里我们就先加载userService）
 public class UserDaoImpl implements UserDao {
 
     public UserDaoImpl() {

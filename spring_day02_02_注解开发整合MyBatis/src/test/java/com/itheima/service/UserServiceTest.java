@@ -26,12 +26,13 @@ public class UserServiceTest {
     public void testFindById() {
         Account ac = accountService.findById(2);
 //        System.out.println(ac);//一般使用断言测试
-        Assert.assertEquals("Jack",ac.getName());
+        Assert.assertEquals("Jack",ac.getName());//预期值与真实值
+        //这种assert一般要同时写两个
     }
 
     @Test
     public void testFindAll() {
         List<Account> alllist = accountService.findAll();
-        Assert.assertEquals(3,alllist.size());
+        Assert.assertEquals(6,alllist.size());
     }
 }

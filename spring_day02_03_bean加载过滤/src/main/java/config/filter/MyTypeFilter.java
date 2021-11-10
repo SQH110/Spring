@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author sqh
  * @create 2021-05-14 16:56
  */
-public class MyTypeFilter implements TypeFilter {
+public class MyTypeFilter implements TypeFilter {//实现一个接口
 
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
 //        return false;//true：所有的都被过滤，而false：所有的都不过滤（默认false）
@@ -23,12 +23,14 @@ public class MyTypeFilter implements TypeFilter {
         形参中可以拿到元数据MetadataReader、MetadataReaderFactory
          */
         ClassMetadata classMetadata = metadataReader.getClassMetadata();//读取基础类的基本类元数据
+
         String className = classMetadata.getClassName();//返回基础类的名称
+
         System.out.println(className);
         if(className.equals("com.itheima.service.impl.UserServiceImpl")) {
-            return true;
+            return true;//拦截
         }
-        return  false;
+        return  false;//放行
 
     }
 }

@@ -36,17 +36,16 @@ public class RedisConfig {
     private Integer maxWait;
 
 
-
     @Bean
     //配置RedisTemplate
-    public RedisTemplate createRedisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate createRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         //1.创建对象
         RedisTemplate redisTemplate = new RedisTemplate();
         //2.设置连接工厂
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         //3.设置redis生成的key的序列化器，对key编码进行处理（如果redis出现问题就要打开这几句话）
 //        RedisSerializer stringSerializer = new StringRedisSerializer();//创建序列化器
-          //设置两种不同的序列化器
+        //设置两种不同的序列化器
 //        redisTemplate.setKeySerializer(stringSerializer);
 //        redisTemplate.setHashKeySerializer(stringSerializer);
         //4.返回
@@ -54,21 +53,21 @@ public class RedisConfig {
     }
 
     @Bean
-    //配置Redis连接工厂
-    public RedisConnectionFactory createRedisConnectionFactory(RedisStandaloneConfiguration redisStandaloneConfiguration,GenericObjectPoolConfig genericObjectPoolConfig){
+    //配置Redis连接工厂（需要redis标准配置类和一个连接池的配置）
+    public RedisConnectionFactory createRedisConnectionFactory(RedisStandaloneConfiguration redisStandaloneConfiguration, GenericObjectPoolConfig genericObjectPoolConfig) {
         //1.创建配置构建器，它是基于池的思想管理Jedis连接的
-        JedisClientConfiguration.JedisPoolingClientConfigurationBuilder builder = (JedisClientConfiguration.JedisPoolingClientConfigurationBuilder)JedisClientConfiguration.builder();
+        JedisClientConfiguration.JedisPoolingClientConfigurationBuilder builder = (JedisClientConfiguration.JedisPoolingClientConfigurationBuilder) JedisClientConfiguration.builder();
         //2.设置池的配置信息对象
         builder.poolConfig(genericObjectPoolConfig);
         //3.创建Jedis连接工厂
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration,builder.build());
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration, builder.build());
         //4.返回
         return jedisConnectionFactory;
     }
 
     @Bean
     //配置spring提供的Redis连接池信息
-    public GenericObjectPoolConfig createGenericObjectPoolConfig(){
+    public GenericObjectPoolConfig createGenericObjectPoolConfig() {
         //1.创建Jedis连接池的配置对象
         GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
         //2.设置连接池信息
@@ -83,7 +82,7 @@ public class RedisConfig {
 
     @Bean
     //配置Redis标准连接配置对象
-    public RedisStandaloneConfiguration createRedisStandaloneConfiguration(){
+    public RedisStandaloneConfiguration createRedisStandaloneConfiguration() {
         //1.创建Redis服务器配置信息对象
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
         //2.设置Redis服务器地址，端口和密码（如果有密码的话）

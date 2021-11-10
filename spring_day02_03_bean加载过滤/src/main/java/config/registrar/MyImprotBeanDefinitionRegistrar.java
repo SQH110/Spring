@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author sqh
  * @create 2021-05-14 23:00
  */
-public class MyImprotBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
+public class MyImprotBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {//实现这个接口
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         /*
@@ -36,7 +36,7 @@ public class MyImprotBeanDefinitionRegistrar implements ImportBeanDefinitionRegi
         scanner.addIncludeFilter(new TypeFilter() {//需要借助一个TypeFilter对象
             @Override
             public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
-                //这个方法中制定规则
+                //这个方法中制定规则（说明需要导入的类）
                 return true;//true：表示都要
             }
         });

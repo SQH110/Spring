@@ -28,7 +28,7 @@ public class AccountDaoImpl2 implements AccountDao {
     public void save(Account account) {
         String sql = "insert into account(name,money)values(:name,:money)";
         Map pm = new HashMap();
-        pm.put("name",account.getName());
+        pm.put("name",account.getName());//具名参数映射对应的类的结构
         pm.put("money",account.getMoney());
         jdbcTemplate.update(sql,pm);
     }

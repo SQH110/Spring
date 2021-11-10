@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 //作为bean交给spring管理
 @Component
 @Primary//加一个优先级（适合两个同样的bean，当你的@Component不注明id的时候，如果到三个相同时，按名称确认即使用@qualifier）
-//@PropertySource(value = {"classpath:JDBC.properties","classpath:abc.properties"},ignoreResourceNotFound = false)//加载属性源(注意这个格式)
+//@PropertySource(value = {"classpath:JDBC.properties","classpath:abc.properties"},ignoreResourceNotFound = false)
+// 加载属性源(注意这个格式)（这个是类路径下的，约定俗成）
 @PropertySource("classpath:JDBC.properties")
 public class BookDaoImpl implements BookDao {
 

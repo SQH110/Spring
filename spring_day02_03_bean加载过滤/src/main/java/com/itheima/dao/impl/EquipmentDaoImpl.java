@@ -7,7 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
  * @author sqh
  * @create 2021-05-15 21:15
  */
-public class EquipmentDaoImpl implements EquipmentDao, InitializingBean {
+public class EquipmentDaoImpl implements EquipmentDao, InitializingBean {//多实现了一个bean初始化前执行方法的规范
 
     @Override
     public void save() {

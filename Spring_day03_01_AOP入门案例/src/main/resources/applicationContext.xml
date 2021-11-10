@@ -12,18 +12,21 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--3.开启aop的命名空间的支持-->
 
+    <!--service对应的bean-->
     <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"/>
-    <!--2.配置共性功能成为spring控制的资源（通知类）-->
+
+    <!--2.配置共性功能成为spring控制的资源（通知类）（第一步必然是制作Advice类）-->
     <bean id="myAdvice" class="com.itheima.aop.AOPAdvice"/>
+
     <!--4.配置AOP-->
     <aop:config>
         <!--5.配置切入点-->
-        <aop:pointcut id="pt" expression="execution(* *..*(..))"/>
+        <aop:pointcut id="pt" expression="execution(* *..*(..))"/><!--表达式-->
         <!--6.配置切面(切入点与通知的关系)-->
-        <aop:aspect ref="myAdvice"><!--ref=通知-->
+        <aop:aspect ref="myAdvice"><!--ref=通知，填入通知对应的bean的id-->
             <!--7.配置具体的切入点对应通知中的哪个操作方法-->
             <aop:before method="function" pointcut-ref="pt"/>
-            <!--pointcut-ref=切入点，method=通知中的具体方法，before表示切入的位置-->
+            <!--pointcut-ref=切入点，method=通知中的具体哪个方法，before表示切入的位置是在切入点的前面，这是一个通知类型-->
         </aop:aspect>
     </aop:config>
 

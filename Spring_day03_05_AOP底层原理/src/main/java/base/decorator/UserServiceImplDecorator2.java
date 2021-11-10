@@ -12,7 +12,7 @@ public class UserServiceImplDecorator2 implements UserService {
 
     private  UserService userService;
 
-    public UserServiceImplDecorator2(UserService userService) {//有参构造
+    public UserServiceImplDecorator2(UserService userService) {//有参构造导入原始类
         this.userService = userService;
     }
 

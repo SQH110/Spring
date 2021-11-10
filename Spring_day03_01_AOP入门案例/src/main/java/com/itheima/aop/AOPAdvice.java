@@ -9,6 +9,7 @@ package com.itheima.aop;
  */
 //1.制作通知类，在类中完成一个方法用于完成共性功能
 public class AOPAdvice {
+    //需要一个方法
     public void function() {
         System.out.println("共性功能");
     }

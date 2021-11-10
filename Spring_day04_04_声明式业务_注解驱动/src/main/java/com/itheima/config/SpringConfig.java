@@ -11,6 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("com.itheima")
 @PropertySource("classpath:jdbc.properties")
 @Import({JDBCConfig.class,MybatisConfig.class})
-@EnableTransactionManagement
+@EnableTransactionManagement//开启事务管理（txManager放在JDBCConfig中，作为bean，会自动装配）
 public class SpringConfig {
 }

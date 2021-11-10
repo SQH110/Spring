@@ -9,15 +9,18 @@ import org.springframework.stereotype.Component;
  * @author sqh
  * @create 2021-05-18 13:53
  */
-@Component
-@Aspect
+
+@Component//配置为一个bean
+@Aspect//配置为一个切面
 public class AOPAdvice {
+
+    //配置切入点（后期单独放到一个类中，提高重用性，规范管理）
 //    @Pointcut("execution(* *..*(..))")
 //    public void pt() {
 //
 //    }
 
-    @Before("AOPPointcut.pt1()")
+    @Before("AOPPointcut.pt1()")//配置前置通知
     public void before() {
         System.out.println("前置before...");
     }

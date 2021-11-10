@@ -16,7 +16,7 @@ import org.springframework.core.annotation.Order;
  */
 @Configuration//这行代表整个application.xml文件
 @ComponentScan("com.itheima")//这行表示扫描范围
-@Import(JDBCConfig.class)//JDBCConfig中的@Component不需要了
+@Import(JDBCConfig.class)//导入这个配置类，JDBCConfig中的@Component不需要了
 @Order(2)
 public class SpringConfig {
     @Bean("b1")

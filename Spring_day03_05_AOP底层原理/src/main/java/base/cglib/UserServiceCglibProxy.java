@@ -14,11 +14,14 @@ import java.lang.reflect.Method;
  * @create 2021-05-22 15:34
  */
 public class UserServiceCglibProxy {
+    //创造一个动态的UserService实现类对象
     public static UserService creatUserServiceCglibProxy(Class clazz) {
         //先造一个字节码对象
         Enhancer enhancer = new Enhancer();//这是spring—core中的
-        enhancer.setSuperclass(clazz);//设置这个类的父类
-        //对原始的类及其方法做调用，完成增强
+
+        enhancer.setSuperclass(clazz);//设置字节码对象为这个类clazz的子类，这样后面才能可以使用泛型
+
+        //对原始的类及其方法做调用（设置回调），完成增强
         enhancer.setCallback(new MethodInterceptor() {//设置回调
             /*
             public void setCallback(final Callback callback) {
@@ -48,7 +51,7 @@ public class UserServiceCglibProxy {
                 Object ret = methodProxy.invokeSuper(o, args);
 //                System.out.println(o.getClass());//class com.itheima.impl.UserServiceImpl$$EnhancerByCGLIB$$3bc735d9
                 if(method.getName().equals("save")) {
-                    //这个方法增强是对所有的方法，所以我们用一个判断排除
+                    //这个方法增强是对所有的方法做增强，所以我们用一个判断来锁定增强的方法
                     System.out.println("刮大白");
                     System.out.println("贴墙纸");
                 }

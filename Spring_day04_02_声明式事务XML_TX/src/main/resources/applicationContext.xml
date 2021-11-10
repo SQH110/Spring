@@ -40,6 +40,7 @@
         <property name="accountDao" ref="accountDao"/>
     </bean>
 
+<!--之前AOP的格式-->
     <!--                  AOP格式                  -->
     <!--                  AOP格式                  -->
     <!--                  AOP格式                  -->
@@ -62,18 +63,22 @@
     <!--                  TX格式                  -->
 
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入一个数据源，和dao层同一个-->
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--定义事务管理的通知类--><!--需要一个事务管理器-->
-    <tx:advice id="txAdvice" transaction-manager="txManager"><!--相当于原来配置的bean-->
+    <!--定义事务管理的通知类（原txAdvice）--><!--需要一个事务管理器：因为原来在txAdvice中定义了一个平台事务管理器-->
+    <tx:advice id="txAdvice" transaction-manager="txManager"><!--相当于原来配置的bean（bean id="txAdvice"）-->
         <!--定义控制的事务（哪些事务是受到控制的）（代替了原来在TXAdvice中的内容）-->
-        <tx:attributes>
+        <!--这里没有配<aop:around method="tx" pointcut-ref="pt"/>中的这个方法，因为这里默认有一个专用的方法-->
+        <tx:attributes><!--对于开启aop控制的方法（事务）进行更加细致的控制-->
+            <!--比较专业的写法-->
             <tx:method name="*" read-only="false"/><!--所有的操作都加读写事务-->
+            <!--需要修改数据的就要使用读写事务，只需要查询的就是只读事务-->
             <tx:method name="get*" read-only="true"/><!--get开头的方法加只读事务-->
             <tx:method name="find*" read-only="true"/>
-            <tx:method name="a" read-only="false" propagation="REQUIRED"/>
-            <tx:method name="b" read-only="false" propagation="NEVER"/>
+            <tx:method name="a" read-only="false" propagation="REQUIRED"/><!--a的传播行为默认-->
+            <tx:method name="b" read-only="false" propagation="NEVER"/><!--b的传播行为never-->
 
             <tx:method
                 name="transfer"
@@ -84,6 +89,11 @@
                 rollback-for=""
                 propagation="REQUIRED"
                 />
+            <!--
+                超时时间：多长算任务失败
+                isolation：隔离级别（和mysql中一致，用默认就可）
+                no-rollback-for：
+            -->
             <!--<tx:method name="transfer" read-only="false"/>-->
         </tx:attributes>
     </tx:advice>
@@ -92,12 +102,15 @@
         <aop:pointcut id="pt" expression="execution(* com.itheima.service.*Service.*(..))"/>
         <!--
         注意：这里不想原来那样execution(* *..transfer(..))，
-        而是更加细致，这样避免了都挂到aop上
+        而是更加细致，这样避免了所有bean资源都挂到aop上（内存开销极大）
         像这样execution(* com.itheima.service.*Service.*(..))
         对业务层精准锁定
+        监控业务接口的所有方法
+        这是标准的书写格式
         -->
-        <aop:pointcut id="pt2" expression="execution(* com.itheima.dao.*.b(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
+        <aop:pointcut id="pt2" expression="execution(* com.itheima.dao.*.b(..))"/><!--dao层的b方法作为切入点-->
+        <!--原来用advice，现在用advisor-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/><!--通知的引用-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pt2"/>
     </aop:config>
 

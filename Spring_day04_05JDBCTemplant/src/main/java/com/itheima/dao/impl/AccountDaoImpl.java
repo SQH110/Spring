@@ -15,12 +15,13 @@ import java.util.List;
 @Repository("accountDao")
 public class AccountDaoImpl implements AccountDao {
 
-    //注入模板对象
+    //注入模板对象（来自于JDBCConfig中注入的第三方bean模板对象）
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public void save(Account account) {
         String sql = "insert into account(name,money) values(?,?)";
+        //模板的使用，只要传参数和sql语句即可
         jdbcTemplate.update(sql,account.getName(),account.getMoney());
     }
 
@@ -54,7 +55,7 @@ public class AccountDaoImpl implements AccountDao {
                 account.setId(rs.getInt("id"));
                 account.setName(rs.getString("name"));
                 account.setMoney(rs.getDouble("money"));
-                return account;
+                return account;//做一个对象的封装映射
             }
         };
         return jdbcTemplate.queryForObject(sql,rm,id);

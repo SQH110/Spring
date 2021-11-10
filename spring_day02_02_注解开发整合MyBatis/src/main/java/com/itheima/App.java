@@ -19,10 +19,11 @@ public class App {
 //        Account ac = accountService.findById(1);
 //        System.out.println(ac);
 
+        // 使用注解配置上下文导入对应的配置类
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 //        ctx.getBean("dataSource");
         AccountService accountService = (AccountService) ctx.getBean("accountService");
-        Account ac = accountService.findById(1);
+        Account ac = accountService.findById(3);
         System.out.println(ac);
 
     }

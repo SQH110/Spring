@@ -12,17 +12,17 @@ import java.util.List;
  * @author sqh
  * @create 2021-05-03 21:39
  */
-@Service("accountService")
+@Service("accountService")//设置该类为spring管理的bean，负责业务层
 public class AccountServicelmpl implements AccountService {
 
-    //注入dao层接口
+    //注入dao层接口（注入引用类型）
     @Autowired
     private AccountDao  accountDao;
 
-    //set注入
-    public void setAccountDao(AccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
+    //set注入（在注解的方式中，set方法可以省略）
+//    public void setAccountDao(AccountDao accountDao) {
+//        this.accountDao = accountDao;
+//    }
 
     public void save(Account account) {
         accountDao.save(account);

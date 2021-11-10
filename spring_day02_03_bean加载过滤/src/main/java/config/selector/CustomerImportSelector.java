@@ -16,6 +16,7 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
+ * 这个自定义导入器，应对了所有的情况
  * 这是工具类，拿来就用。不需要逐行研究
  */
 public class CustomerImportSelector implements ImportSelector {

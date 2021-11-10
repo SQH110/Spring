@@ -20,6 +20,7 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
+
     @Test
     public void testSave() {
         userService.save();

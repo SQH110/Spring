@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itheima</groupId>
-    <artifactId>Spring_day02_03_bean加载过滤</artifactId>
+    <artifactId>Spring_day02_03</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -18,7 +18,7 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
     <dependencies>
         <dependency>

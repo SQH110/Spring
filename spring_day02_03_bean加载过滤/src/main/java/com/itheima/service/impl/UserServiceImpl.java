@@ -15,12 +15,16 @@ import org.springframework.stereotype.Service;
  */
 @Component("userService")
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userDao;
+
     @Autowired
     private BookDao bookDao;
+
     @Autowired
     private AccountDao accountDao;
+
     @Autowired
     private EquipmentDao equipmentDao;
 

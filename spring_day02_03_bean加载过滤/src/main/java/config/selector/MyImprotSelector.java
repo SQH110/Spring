@@ -20,11 +20,12 @@ public class MyImprotSelector implements ImportSelector {
     选择并返回要导入的类的名称
      */
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
-        //把String[]的元素合并到一个配置类中
-        InputStream ras = MyImprotSelector.class.getClassLoader().getResourceAsStream("improt.properties");
+        //把String[]的元素合并到一个配置类中（通过properties文件导入需要的全类名）
+        InputStream ras = MyImprotSelector.class.getClassLoader().getResourceAsStream("import.properties");
+
         Properties properties = new Properties();
         try {
-            properties.load(ras);
+            properties.load(ras);//加载到内存中
         } catch (IOException e) {
             e.printStackTrace();
         }

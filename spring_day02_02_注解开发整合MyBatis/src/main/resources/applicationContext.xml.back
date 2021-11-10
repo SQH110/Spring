@@ -9,6 +9,7 @@
 
     <!--开启加载properties配置文件(类路径下的)-->
 <!--    <context:property-placeholder location="classpath:*.properties"/>-->
+    <!--通过标签@PropertySource来加载properties文件-->
 
     <!--加载数据源/线程池(造一个dataSource对象，把加载的信息变成一个对象)-->
 <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
@@ -17,12 +18,13 @@
 <!--        <property name="username" value="${jdbc.password}"/>-->
 <!--        <property name="url" value="${jdbc.url}"/>-->
 <!--    </bean>-->
+    <!--加载第三方bean，使用对应的getBean方法，实例化后，再set对应的参数-->
 
-    <!--配置service作为spring的bean，注入dao-->
+    <!--业务层的话，配置service作为spring的bean，注入dao-->
 <!--    <bean id="accountService" class="com.itheima.service.impl.AccountServicelmpl">-->
         <!--注入-->
 <!--        <property name="accountDao" ref="accountDao"/>&lt;!&ndash;这个ref的值是spring自动管理&ndash;&gt;-->
-        <!--mybatis的dao是自动代理生成的，所以没有accountDao的bean-->
+        <!--数据层的话，mybatis的dao是自动代理生成的，所以没有accountDao的bean-->
 <!--    </bean>-->
 
     <!--（上面和Mybatis没啥关系，现在要做的就是和mybatis产生关系）spring整合mybatis后控制的创建连接用的对象-->

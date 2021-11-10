@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface AccountDao {
 
-    //五个操作（这些配置原先是在resource中的）
+    //五个操作（这些配置原先是在resource中的mapper）
     @Insert("INSERT INTO account (NAME,money) VALUES(#{name},#{money})")
     void save(Account account);
 

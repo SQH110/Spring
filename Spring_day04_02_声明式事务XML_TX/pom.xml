@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itheima</groupId>
-    <artifactId>Spring_day04_02_声明式事务XML_TX</artifactId>
+    <artifactId>Spring_day04_02_XML_TX</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

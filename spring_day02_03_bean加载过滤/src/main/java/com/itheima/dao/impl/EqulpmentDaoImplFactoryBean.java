@@ -12,7 +12,7 @@ import org.springframework.beans.factory.FactoryBean;
  */
 public class EqulpmentDaoImplFactoryBean implements FactoryBean {
 
-    @Override//这个是核心方法：返回一个对象
+    @Override//这个是核心方法：返回一个对象（也就是提供创造一个bean的作用）
     public Object getObject() throws Exception {
         return new EquipmentDaoImpl();
     }

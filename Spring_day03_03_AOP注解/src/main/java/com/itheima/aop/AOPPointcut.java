@@ -7,8 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
  * @create 2021-05-18 16:17
  */
 public class AOPPointcut {
-    @Pointcut("execution(* *..*(..))")
-    public void pt1(){
 
-    }
+    @Pointcut("execution(* *..*(..))")
+    public void pt1(){ }
 }

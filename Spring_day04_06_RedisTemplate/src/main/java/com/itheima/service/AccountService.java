@@ -8,7 +8,9 @@ public interface AccountService {
 
     void save(Account account);
 
-    void changeMoney(Integer id,Double money);
+    void changeMoney(Integer id, Double money);
 
     Double findMondyById(Integer id);
+
+    public Boolean getKeys(Integer id);
 }

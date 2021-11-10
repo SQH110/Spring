@@ -14,7 +14,7 @@ import javax.swing.*;
  * @author sqh
  * @create 2021-05-18 16:33
  */
-@RunWith(SpringJUnit4ClassRunner.class)//使用spring类加载器
+@RunWith(SpringJUnit4ClassRunner.class)//设定spring专用的类加载器，加载单元测试类
 @ContextConfiguration(classes = SpringConfig.class)//上下文
 public class UserServiceTest {
     @Autowired

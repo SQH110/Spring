@@ -12,7 +12,7 @@ public class MyBean implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("bean之前。。。。");
         System.out.println(beanName);
-        return bean;//在初始化前
+        return bean;//bean过来之后最终还需要给它返回去
     }
 
     @Override

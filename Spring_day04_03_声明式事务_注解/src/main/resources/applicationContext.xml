@@ -50,7 +50,7 @@
     </bean>
 
 
-    <tx:annotation-driven transaction-manager="txManager"/><!--告知使用注解驱动-->
+    <tx:annotation-driven transaction-manager="txManager"/><!--告知使用注解驱动和使用的事务管理器-->
  <!--上面的代替了下面的txAdvice相关配置-->
 
     <!--定义事务管理的通知类--><!--需要一个事务管理器-->

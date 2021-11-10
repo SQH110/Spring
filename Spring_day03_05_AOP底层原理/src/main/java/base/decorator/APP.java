@@ -11,8 +11,9 @@ import javax.activation.MailcapCommandMap;
  */
 public class APP {
     public static void main(String[] args) {
+        //原始设计对象
         UserService userService = new UserServiceImpl();
-        //装饰
+        //装饰对象
         UserService userService1 = new UserServiceImplDecorator(userService);
         UserService userService2 = new UserServiceImplDecorator2(userService1);//多态的应用
 

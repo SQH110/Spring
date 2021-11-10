@@ -16,25 +16,29 @@
     <!--2.配置共性功能成为spring控制的资源-->
     <bean id="myAdvice" class="com.itheima.aop.AOPAdvice"/>
     <!--4.配置AOP-->
-    <aop:config>
-        <!--5.配置切入点-->
+    <!--<aop:config>
+        &lt;!&ndash;5.配置切入点&ndash;&gt;
         <aop:pointcut id="pt" expression="execution(* *..*(..))"/>
-        <!--6.配置切面(切入点与通知的关系)-->
-        <aop:aspect ref="myAdvice"><!--ref=通知-->
-            <!--7.配置具体的切入点对应通知中的哪个操作方法-->
-<!--            <aop:before method="before" pointcut-ref="pt"/>-->
-            <!--pointcut-ref=切入点，method=通知中的具体方法，before表示切入的位置-->
+        &lt;!&ndash;6.配置切面(切入点与通知的关系)&ndash;&gt;
+        <aop:aspect ref="myAdvice">&lt;!&ndash;ref=通知&ndash;&gt;
+            &lt;!&ndash;7.配置具体的切入点对应通知中的哪个操作方法&ndash;&gt;
+&lt;!&ndash;            <aop:before method="before" pointcut-ref="pt"/>&ndash;&gt;
+            &lt;!&ndash;pointcut-ref=切入点，method=通知中的具体方法，before表示切入的位置&ndash;&gt;
         </aop:aspect>
-    </aop:config>
+    </aop:config>-->
+
 <!--这个可以配置多个，可以看到before打印了多次-->
     <!--<aop:config>
         <aop:pointcut id="pt" expression="execution(* *..*(..))"/>
+        &lt;!&ndash;可以配置多个aspect，这里就是多次运行before这个方法的内容&ndash;&gt;
         <aop:aspect ref="myAdvice">
             <aop:before method="before" pointcut-ref="pt"/>
         </aop:aspect>
+
         <aop:aspect ref="myAdvice">
             <aop:before method="before" pointcut-ref="pt"/>
         </aop:aspect>
+
         <aop:aspect ref="myAdvice">
             <aop:before method="before" pointcut-ref="pt"/>
         </aop:aspect>
@@ -55,13 +59,17 @@
 
 <!--通知获取参数数据-->
     <!--<aop:config>
+        &lt;!&ndash;配置切入点&ndash;&gt;
         <aop:pointcut id="pt" expression="execution(* *..save(..))"/>
         <aop:aspect ref="myAdvice">
+            &lt;!&ndash;配置前置通知&ndash;&gt;
             <aop:before method="before" pointcut-ref ="pt"/>
+            &lt;!&ndash;配置后置通知&ndash;&gt;
             <aop:after method="after" pointcut-ref ="pt"/>
-            <aop:after-returning method="afterReturing" pointcut-ref ="pt"/>
+            &lt;!&ndash;配置返回后通知&ndash;&gt;
+            <aop:after-returning method="afterReturning" pointcut-ref ="pt"/>
+            &lt;!&ndash;配置环绕通知&ndash;&gt;
             <aop:around method="around" pointcut-ref ="pt"/>
-
             &lt;!&ndash;第二种方式获取通知方法中的参数&ndash;&gt;
             <aop:before method="before1" pointcut="execution(* *..save(int)) &amp;&amp; args(x)"/>
         </aop:aspect>
@@ -69,14 +77,16 @@
 
 <!--通知获取返回值数据-->
     <!--<aop:config>
+        &lt;!&ndash;配置切入点&ndash;&gt;
         <aop:pointcut id="pt" expression="execution(* *..*(..))"/>
+        &lt;!&ndash;配置切面（切入点和通知的关系）&ndash;&gt;
         <aop:aspect ref="myAdvice">
-            &lt;!&ndash;只有这两个可以拿到返回值数据&ndash;&gt;
+            &lt;!&ndash;只有这两个类型的通知可以拿到返回值数据&ndash;&gt;
             <aop:around method="around" pointcut-ref ="pt"/>
-            <aop:after-returning method="afterReturing" pointcut-ref ="pt" returning="ret"/>&lt;!&ndash;这个ret就是获取的值，做的配置&ndash;&gt;
+            <aop:after-returning method="afterReturning" pointcut-ref ="pt" returning="ret"/>
+            &lt;!&ndash;这个ret就是获取的值，做的配置&ndash;&gt;
         </aop:aspect>
     </aop:config>-->
-
 
 <!--获取异常数据-->
     <aop:config>
@@ -84,10 +94,9 @@
         <aop:aspect ref="myAdvice">
             <!--只有这两个可以拿到返回值数据-->
             <aop:around method="around" pointcut-ref ="pt"/>
-            <aop:after-throwing method="afterThrowing" pointcut-ref ="pt" throwing="t"/><!--这个ret就是获取的值，做的配置-->
+<!--            <aop:after-throwing method="afterThrowing" pointcut-ref ="pt" throwing="t"/>-->
+            <!--这个ret就是获取的值，做的配置-->
         </aop:aspect>
     </aop:config>
-
-
 
 </beans>

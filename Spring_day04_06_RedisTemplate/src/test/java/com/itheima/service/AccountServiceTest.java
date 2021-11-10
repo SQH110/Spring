@@ -5,6 +5,7 @@ import com.itheima.domain.Account;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -44,7 +45,10 @@ public class AccountServiceTest {
 
     @Test
     public void findMondyById() {
+        //判断是否有对应的key
+        System.out.println(accountService.getKeys(1));//false
+
         Double money = accountService.findMondyById(1);
-        System.out.println(money);//200
+        System.out.println(money);//200.0
     }
 }

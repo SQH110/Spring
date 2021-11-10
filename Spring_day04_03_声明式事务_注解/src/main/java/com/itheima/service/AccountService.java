@@ -13,11 +13,11 @@ public interface AccountService {
      * @param inName      入账用户名
      * @param money       转账金额
      */
-    @Transactional(
+    @Transactional(//配在接口上比类上要好
             readOnly = false,
             timeout = -1,
             isolation = Isolation.DEFAULT,
-            rollbackFor = {},//java.lang.ArithmeticException.class, IOException.class
+            rollbackFor = {},  //java.lang.ArithmeticException.class, IOException.class
             noRollbackFor = {},
             propagation = Propagation.REQUIRED//事务传播
     )//表示开启事务
