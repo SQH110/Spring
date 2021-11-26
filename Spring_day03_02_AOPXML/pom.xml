@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itheima</groupId>
-    <artifactId>Spring_day03_02_AOPXML</artifactId>
+    <artifactId>Spring_day03_02</artifactId>
+    <name>Spring_day03_02_AOPXML</name>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

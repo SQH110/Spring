@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itheima</groupId>
-    <artifactId>Spring_day01_03_di</artifactId>
+    <artifactId>Spring_day01_03</artifactId>
+    <name>Spring_day01_03_di配置</name>
     <version>1.0-SNAPSHOT</version>
 
     <!--导入坐标-->

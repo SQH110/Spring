@@ -5,6 +5,8 @@ import com.itheima.domain.Account;
 import java.util.List;
 
 /**
+ * 数据层接口
+ *
  * @author sqh
  * @create 2021-05-03 21:22
  */

@@ -7,13 +7,15 @@ import com.itheima.service.AccountService;
 import java.util.List;
 
 /**
+ * 业务层实现类
+ *
  * @author sqh
  * @create 2021-05-03 21:39
  */
 public class AccountServicelmpl implements AccountService {
 
     //注入dao层接口
-    private AccountDao  accountDao;
+    private AccountDao accountDao;
 
     //set方法用于set注入
     public void setAccountDao(AccountDao accountDao) {

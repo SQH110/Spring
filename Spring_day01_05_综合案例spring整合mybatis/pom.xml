@@ -7,6 +7,8 @@
     <groupId>com.itheima</groupId>
     <!--这里不能出现中文-->
     <artifactId>Spring_day01_05</artifactId>
+    <!--这里可以放中文-->
+    <name>Spring_day01_05_综合案例Spring整合MyBatis</name>
     <version>1.0-SNAPSHOT</version>
 
     <!--导入5个坐标-->
